@@ -3,12 +3,19 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('LoginController', [function() {
+  controller('LoginController', ['$scope', '$location', function($scope, $location) {
+    $scope.name = 'Drew';
 
+    $scope.login = function() {
+      $location.path('/meetings');
+    }
   }])
-  .controller('RegisterController', [function() {
-
+  .controller('RegisterController', ['$scope', '$location', function($scope, $location) {
+    $scope.name = 'Andrew';
+    $scope.register = function() {
+      $location.path('/meetings');
+    }
   }])
-  .controller('MeetingsController', [function() {
-
+  .controller('MeetingsController', ['$scope', function($scope) {
+    $scope.name = 'Tiny';
   }]);

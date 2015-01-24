@@ -1,9 +1,9 @@
-<section class="login">
-  <form name="myform" novalidate>
-    <h1>Welcome</h1>
+<section class="login" ng-controller="LoginController">
+  <form name="myform" ng-submit="login()" novalidate>
+    <h1>Welcome, {{name}}</h1>
     <h2>Log in to start tracking what happens at your meetings</h2>
 
-    <input type="email" name="email" placeholder="Email" autofocus
+    <input type="email" name="email" placeholder="Email"
       ng-model="user.email" ng-required="true">
 
     <p class="error validationerror" ng-show="myform.email.$invalid &&
