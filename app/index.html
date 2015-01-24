@@ -2,17 +2,18 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, userscalable=no">
   <title>Domus - The Meeting Planner</title>
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-
+  <header>
+    <nav class="cf" ng-include="'views/nav.html'"></nav>
+  </header>
   <div class="page">
     <main class="cf">
-
+      <div ng-view></div>
     </main>
-
-    <div ng-view></div>
   </div>
 
 
