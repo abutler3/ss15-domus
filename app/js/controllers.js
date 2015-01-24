@@ -16,6 +16,24 @@ angular.module('myApp.controllers', []).
       $location.path('/meetings');
     }
   }])
-  .controller('MeetingsController', ['$scope', function($scope) {
+  .controller('MeetingsController', ['$scope', '$firebase', function($scope, $firebase) {
     $scope.name = 'Tiny';
+    var ref = new Firebase('https://domusstatic.firebaseio.com/meetings');
+    var meetings = $firebase(ref);
+    $scope.meetings = meetings.$asObject();
+
+    $scope.addMeeting = function() {
+      meetings.$push({
+        name: $scope.meetingname,
+        date: Firebase.ServerValue.TIMESTAMP,
+        detail: $scope.meetingdetail
+      }).then(function() {
+        $scope.meetingname = '';
+        $scope.meetingdetail = '';
+      });
+    }
+
+    $scope.removeMeeting = function(key) {
+        meetings.$remove(key);
+    }
   }]);
