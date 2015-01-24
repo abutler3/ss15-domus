@@ -1,19 +1,8 @@
-<section class="register" ng-controller="LoginController">
+<section class="register" ng-controller="RegisterController">
   <form name="myform" ng-submit="register()" novalidate>
     <h1>Welcome</h1>
     <h2>Register to start tracking what happens at your meetings</h2>
 
-    <input type="firstname" name="firstname" placeholder="First Name"
-    ng-model="user.firstname" ng-required="true">
-
-    <p class="error validationerror" ng-show="myform.firstname.$invalid &&
-    myform.firstname.$touched">First name is required</p>
-
-    <input type="lastname" name="lastname" placeholder="Last Name"
-    ng-model="user.lastname" ng-required="true">
-
-    <p class="error validationerror" ng-show="myform.lastname.$invalid &&
-    myform.lastname.$touched">Last name is required</p>
 
     <input type="email" name="email" placeholder="Email"
     ng-model="user.email" ng-required="true">
