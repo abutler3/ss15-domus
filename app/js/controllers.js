@@ -4,7 +4,6 @@
 
 angular.module('myApp.controllers', []).
   controller('LoginController', ['$scope', 'authService', function($scope, authService) {
-    $scope.name = 'Drew';
     // var ref = new Firebase(FIREBASE_URL);
     // var auth = $firebaseSimpleLogin(ref);
     $scope.user = { email: '', password: '' };
@@ -57,11 +56,18 @@ angular.module('myApp.controllers', []).
   //   });
   //
   // }])
-  .controller('MeetingsController', ['$scope', 'meetingService', function($scope, meetingService) {
-    $scope.name = 'Tiny';
+  .controller('MeetingsController', ['$scope', 'meetingService', 'authService', function($scope, meetingService, authService) {
     // var ref = new Firebase(FIREBASE_URL + 'meetings');
     // $scope.meetings = $firebase(ref);
-    $scope.meetings = meetingService.meetings;
+    // $scope.meetings = meetingService.meetings;
+
+    // Bind user's meetings to $scope.meetings
+    authService.getCurrentUser().then(function(user) {
+      if (user) {
+        $scope.meetings = meetingService.getMeetingsByUserId(user.id);
+      };
+    })
+
     $scope.meeting = { name: '', date: Firebase.ServerValue.TIMESTAMP,
       detail: '' };
 
@@ -69,7 +75,7 @@ angular.module('myApp.controllers', []).
       // $scope.meetings.$add($scope.meeting);
       // $scope.meeting = { name: '', date: Firebase.ServerValue.TIMESTAMP,
       // detail: '' };
-      meetingService.addMeeting($scope.meeting);
+      meetingService.addMeeting($scope.meeting, $scope.currentUser.id);
       $scope.meeting = { name: '', date: Firebase.ServerValue.TIMESTAMP, detail: '' };
     }
 

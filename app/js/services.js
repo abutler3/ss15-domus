@@ -10,14 +10,27 @@ angular.module('myApp.services', [])
   .factory('FIREBASE_URL', function() {
     return 'https://domusstatic.firebaseio.com/';
   })
-  .factory('meetingService', function($firebase, FIREBASE_URL) {
-    var ref = new Firebase(FIREBASE_URL + 'meetings');
-    var meetings = $firebase(ref);
+  .factory('dataService', function($firebase, FIREBASE_URL) {
+    var dataRef = new Firebase(FIREBASE_URL);
+    var fireData = $firebase(dataRef);
+
+    return fireData;
+  })
+  .factory('meetingService', function(dataService) {
+    // var ref = new Firebase(FIREBASE_URL + 'meetings');
+    // var meetings = $firebase(ref);
+
+    // var meetings = dataService.$child('meetings');
+    var users = dataService.$child('users');
 
     var meetingServiceObject = {
-      meetings: meetings,
-      addMeeting: function(meeting) {
-        meetings.$add(meeting);
+      // meetings: meetings,
+      addMeeting: function(meeting, userId) {
+        // meetings.$add(meeting);
+        users.$child(userId).$child('meetings').$add(meeting);
+      },
+      getMeetingsByUserId: function(userId) {
+        return users.$child(userId).$child('meetings');
       }
     };
 
@@ -32,19 +45,20 @@ angular.module('myApp.services', [])
     var authServiceObject = {
       register: function(user) {
         auth.$createUser(user.email, user.password).then(function(data) {
-          console.log(data);
           authServiceObject.login(user);
         });
       },
       login: function(user) {
         auth.$login('password', user).then(function(data) {
-          console.log(data);
           $location.path('/meetings');
         });
       },
       logout: function() {
         auth.$logout();
         $location.path('/login');
+      },
+      getCurrentUser: function() {
+        return auth.$getCurrentUser();
       }
     };
 
