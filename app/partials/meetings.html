@@ -13,6 +13,6 @@
   <h1>Past Meetings</h1>
   <div class="meeting" ng-repeat="(key,meeting) in meetings">
     <button class="btn btn-delete tooltip" ng-click="removeMeeting(key)"><span>Delete</span></button>
-    <span class="text">{{meeting.name}}</span>
+    <div class="text tooltip"><span>{{meeting.detail}}</span>{{meeting.name}}</div>
   </div>
 </section>

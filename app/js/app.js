@@ -12,7 +12,7 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: 'LoginController'});
-  $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'RegisterController'});
+  $routeProvider.when('/register', {templateUrl: 'partials/register.html', controller: 'LoginController'});
   $routeProvider.when('/meetings', {templateUrl: 'partials/meetings.html', controller: 'MeetingsController'});
   $routeProvider.otherwise({redirectTo: '/login'});
 }]);
