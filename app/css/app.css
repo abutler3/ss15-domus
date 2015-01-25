@@ -127,7 +127,7 @@ text-shadow: 1px 1px rgb(255,255,255, 1);
 }
 
 a {
-color: #145266;
+color: rgba(149, 171, 171, 0.96);
 font-family: Bree Serif, serif;
 }
 
@@ -176,12 +176,22 @@ background: rgba(255,255,255,0.4);
 border: 1px solid white;
 border-radius: 10px;
 outline: 0;
+margin-bottom: 10px;
 }
 
 input[type=radio] {
 width: auto;
 }
 
+textarea {
+  width: 100%;
+  display: inline-block;
+  padding: 10px 0 10px 15px;
+  font-size: 1rem;
+  color: #475B62;
+  background: rgba(255,255,255,0.4);
+  border: 0;
+}
 
 .ng-enter.ng-enter-active,
 .ng-leave {

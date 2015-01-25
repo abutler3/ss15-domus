@@ -4,6 +4,7 @@
   <form class="formgroup addmeeting cf" name="myform" ng-submit="addMeeting()" novalidate>
     <div class="inputwrapper">
       <input type="text" name="meetingname" placeholder="Meeting Name" ng-model="meeting.name" ng-required="true">
+      <br>
       ​<textarea id="txtArea" name="meetingdetail" placeholder="Meeting Detail" ng-model="meeting.detail" ng-required="true" rows="10" cols="70"></textarea>
     </div>
     <button type="submit" class="btn" ng-disabled="myform.$invalid">+</button>
