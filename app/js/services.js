@@ -10,6 +10,20 @@ angular.module('myApp.services', [])
   .factory('FIREBASE_URL', function() {
     return 'https://domusstatic.firebaseio.com/';
   })
+  .factory('meetingService', function($firebase, FIREBASE_URL) {
+    var ref = new Firebase(FIREBASE_URL + 'meetings');
+    var meetings = $firebase(ref);
+
+    var meetingServiceObject = {
+      meetings: meetings,
+      addMeeting: function(meeting) {
+        meetings.$add(meeting);
+      }
+    };
+
+    return meetingServiceObject;
+
+  })
   .factory('authService', function($firebaseSimpleLogin, $location, FIREBASE_URL, $rootScope) {
 
     var ref = new Firebase(FIREBASE_URL);
