@@ -3,7 +3,7 @@
 /* Controllers */
 
 angular.module('myApp.controllers', []).
-  controller('LoginController', ['$scope', '$rootScope', 'authService', function($scope, $$rootScope, authService) {
+  controller('LoginController', ['$scope', 'authService', function($scope, authService) {
     $scope.name = 'Drew';
     // var ref = new Firebase(FIREBASE_URL);
     // var auth = $firebaseSimpleLogin(ref);
@@ -33,13 +33,6 @@ angular.module('myApp.controllers', []).
       authService.logout();
     }
 
-    // $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
-    //   $rootScope.currentUser = user;
-    // });
-    //
-    // $rootScope.$on("$firebaseSimpleLogin:logout", function() {
-    //   $rootScope.currentUser = null;
-    // });
   }])
   // .controller('RegisterController', ['$scope', '$firebaseSimpleLogin', '$location', '$rootScope', function($scope, $firebaseSimpleLogin, $location, $rootScope) {
   //   $scope.name = 'Andrew';
@@ -84,4 +77,7 @@ angular.module('myApp.controllers', []).
     $scope.removeMeeting = function(key) {
         meetings.$remove(key);
     }
+  }])
+  .controller('LandingPageController', [function() {
+
   }]);

@@ -10,7 +10,7 @@ angular.module('myApp.services', [])
   .factory('FIREBASE_URL', function() {
     return 'https://domusstatic.firebaseio.com/';
   })
-  .factory('authService', function($firebaseSimpleLogin, $location, FIREBASE_URL) {
+  .factory('authService', function($firebaseSimpleLogin, $location, FIREBASE_URL, $rootScope) {
 
     var ref = new Firebase(FIREBASE_URL);
     var auth = $firebaseSimpleLogin(ref);
@@ -33,6 +33,14 @@ angular.module('myApp.services', [])
         $location.path('/login');
       }
     };
+
+    $rootScope.$on("$firebaseSimpleLogin:login", function(e, user) {
+      $rootScope.currentUser = user;
+    });
+
+    $rootScope.$on("$firebaseSimpleLogin:logout", function() {
+      $rootScope.currentUser = null;
+    });
 
     return authServiceObject;
   });

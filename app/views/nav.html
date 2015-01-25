@@ -1,9 +1,9 @@
 <div ng-controller="LoginController" class="table">
   <ul>
-    <li class="branding"><a ng-href="#/">Domus</a></li>
-    <li><a ng-href="#/meetings">Meetings</a></li>
-    <li><a ng-href="#/login">Login</a></li>
-    <li><a ng-href="#/register">Register</a></li>
-    <li><a ng-href="#" ng-click="logout()">Log Out</a>
+    <li class="branding"><a ng-href="/">Domus</a></li>
+    <li><a ng-href="#/meetings" ng-show="currentUser">Meetings</a></li>
+    <li><a ng-href="#/login" ng-hide="currentUser">Login</a></li>
+    <li><a ng-href="#/register" ng-hide="currentUser">Register</a></li>
+    <li><a ng-href="" ng-click="logout()" ng-show="currentUser">Log Out</a>
   </ul>
 </div>
